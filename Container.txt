@@ -1,0 +1,59 @@
+$docker ps 
+for viewing contianers
+
+to run a contianer based on the docker image
+$docker run -d(detach) react-app
+
+to give the contianer a name we use --name 
+$docker run -d --name name image
+
+viewing logs
+$docker logs contianerID
+
+running and connecting a docker continer to a port on our local device
+$docker run -d -p 3000:3000 --name ox react-app
+
+how to run commands in the container 
+ eg.
+$docker exec containerName/ID anyCommand
+$docker exec -it contianerName sh
+
+to remove contiainers
+
+$ docker rm ovo(continerName)
+
+to prune
+$docker contianer prune
+
+using VOLUMES
+its a storage outside the contianers 
+ $docker volume - to checj its options
+
+$docker volume create app-data
+$docker volume inspect app-data
+
+sending the persistent data to a volume directory
+
+$docker run -d -p 4000:3000 -v app-data:/app/data react-app(containerName)
+
+if you delete a container the associated volume is not delelted 
+continaers can share different volumes
+
+
+copying a file form continaer to host
+
+$docker cp(copy) e1c9continerid:/app/data.txt/filedirectory .(where we want to dump it)
+
+copying from host to container 
+$docker cp file.txt e1econtinername:/app
+
+we run shell section using "exec" in the contianer  to see files, write commands in the contianer 
+
+ 55-57
+
+Docker Compose
+
+
+removing all continers 
+$docker contianers rm -f $(docker contianer ls -a -q)
+same synthax fro image

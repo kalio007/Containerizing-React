@@ -106,12 +106,16 @@ microsoft uses a link from docker smaples because the dont host on docker
 $ docker build -t(tag the image) react-app(image name) .(where to fing the dockerfile)
 
 to view all the iamges we use
-$docker image -ls
+$docker image -ls:
 
 to start the contianer
-$docker -it react-app(contianer name)
+
+$docker run -it react-app(contianer name)
+
 but we want it with bash or shell because alpine does come with bash
+
 $docker run -it react-app sh
+
 the above creates an environment for the application to run on
 
 copying the applcation files and directory into the base image
@@ -183,3 +187,42 @@ OPTIMIZATION (optimizing your docker contianer)
    $docker history image-name
 
 and would have to rebuild if a change is made to the file, this can cause ling runtime to rebuild both all the packages from scratch, so we want to run the npm install based on a change on the package.json file alone
+
+basically
+the instructions that change frequently should be at the bottom while the instructions that dont change frequently should be at the top
+
+to c;ear dangling images that has swayed from our images we prune the image
+
+$docker image prune
+$
+
+$docker ps - is actually to check contianers
+to prune (not in use contianer)  containers we use 
+$ docker container prune
+
+to remove
+$ docker image rm name/Id
+
+Tags
+
+$ docker build -t react-app:1 .
+for an already made images we use
+
+$ docker image tag react-app:currentTag react-app:newName
+
+to push to dockerhub
+$docker tag local-image:tagname new-repo:tagname
+you are basically tagging the local image with the image you want to push to dockerhub
+
+$docker push new-repo:tagname
+$ docker push iamkalio/react-app:tagname
+
+saving and loading images
+
+$docker image save -o imageName.tar(like saving as a zipped file) imgeName:tag
+
+Loading an image to the conatiner using a .tar file
+
+$ docker image load -i react-app.tar
+
+to connect the container to the
